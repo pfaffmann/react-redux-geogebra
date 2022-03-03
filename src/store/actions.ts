@@ -1,12 +1,13 @@
 import { createAction } from './utils'
-
+import { Element, OnAppletLoadedFunc } from '../types'
 import * as constants from './constants'
 
-export const setSelectedElements = (elements: any) =>
-  createAction(constants.SET_SELECTED_ELEMENTS, elements)
-export const resetSelectedElements = (elements: any) =>
-  createAction(constants.RESET_SELECTED_ELEMENTS, elements)
+export const addElementToStore = (element: Element) =>
+  createAction(constants.ADD_ELEMENT_TO_STORE, element)
+
+export const onAppletLoaded = (onLoaded: OnAppletLoadedFunc) =>
+  createAction(constants.ON_APPLET_LOADED, { onLoaded })
 
 export type ReactGeoGebraAction = ReturnType<
-  typeof setSelectedElements | typeof resetSelectedElements
+  typeof onAppletLoaded | typeof addElementToStore
 >

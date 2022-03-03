@@ -1,12 +1,9 @@
 import React, { useMemo } from 'react'
 import { Provider } from 'react-redux'
+import { initialState } from '../../store'
+import configureStore from '../../store/configure-store'
 
-const initialState = {}
-const configureStore = (prop: any) => {
-  return prop
-}
-
-interface ProviderProps {}
+export interface ProviderProps {}
 
 const ReactGeoGebraProvider: React.FC<ProviderProps> = ({ children }) => {
   const store = useMemo(() => {

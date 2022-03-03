@@ -6,10 +6,65 @@ declare global {
   }
 }
 export type AppletId = string
+type LabelStyle = 0 | 1 | 2 | 3
+type PointSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
-export interface ReactGeoGebra {
+export interface Element {
+  name: string
+  coordinates?: XYPosition | XYZPosition
+  value?: number
+  listValue?: number
+  color?: string
+  isVisible?: boolean
+  valueString?: string
+  definitionString?: string
+  commandString?: string
+  LaTeXString?: string
+  LaTeXBase64Definition?: string
+  LaTeXBase64Value?: string
+  objectType?: string
+  isExisting?: boolean
+  isDefined?: boolean
+  objectNumber?: number
+  CASobjectNumber?: number
+  layer?: string
+  lineStyle?: number
+  lineThickness?: number
+  pointStyle?: number
+  pointSize?: PointSize
+  filling?: number
+  caption?: string
+  labelStyle?: LabelStyle
+  isLabelVisible?: boolean
+  isIndependent?: boolean
+  isMoveable?: boolean
+}
+
+export type Elements = Array<Element>
+interface GridVisibility {
+  viewNumber?: number
+  isVisible: boolean
+}
+type EditorState = {
+  content: any
+  caret?: any
+  eval?: any
+  latex?: any
+}
+
+export type OnAppletLoadedFunc = () => void
+
+export interface ReactGeoGebraState {
   id: AppletId
-  params: AppParameters
+  params: Partial<GeoGebraParameters>
+  elements: Elements
+  mode: number
+  isOnTheFlyPointCreationActive?: boolean
+  isGridVisible?: GridVisibility
+  editorState: EditorState
+  perspective: any
+
+  onAppletLoaded?: OnAppletLoadedFunc
 }
 
 export interface XYPosition {

@@ -49,25 +49,25 @@ const Geogebra: React.FC<GeoGebraParameters> = (props) => {
     }
   }, [])
   if (reloadOnPropChange) {
-    useEffect(() => {
-      const propsChanged = Object.keys(props).map((key) => {
-        if (
-          typeof refProps.current[key] === 'function' &&
-          typeof props[key] === 'function'
-        )
-          return false
-        if (
-          typeof refProps.current[key] === 'object' &&
-          typeof props[key] === 'object'
-        )
-          return false
-        return refProps.current[key] !== props[key]
-      })
-      if (propsChanged.some((element) => element === true)) {
-        refProps.current = props
-        setWatchPropsChange(true)
-      }
-    }, [props])
+    // useEffect(() => {
+    //   const propsChanged = Object.keys(props).map((key) => {
+    //     if (
+    //       typeof refProps.current[key] === 'function' &&
+    //       typeof props[key] === 'function'
+    //     )
+    //       return false
+    //     if (
+    //       typeof refProps.current[key] === 'object' &&
+    //       typeof props[key] === 'object'
+    //     )
+    //       return false
+    //     return refProps.current[key] !== props[key]
+    //   })
+    //   if (propsChanged.some((element) => element === true)) {
+    //     refProps.current = props
+    //     setWatchPropsChange(true)
+    //   }
+    // }, [props])
   }
   useEffect(() => {
     if (window.GGBApplet) {
