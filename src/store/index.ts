@@ -7,6 +7,7 @@ const initialId = 'ggbApplet'
 export const initialState: ReactGeoGebraState = {
   id: initialId,
   elements: [],
+  selectedElementNames: [],
   params: {
     id: initialId,
     width: 800,

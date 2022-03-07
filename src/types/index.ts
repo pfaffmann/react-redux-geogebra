@@ -58,6 +58,7 @@ export interface ReactGeoGebraState {
   id: AppletId
   params: Partial<GeoGebraParameters>
   elements: Elements
+  selectedElementNames: Array<string>
   mode: number
   isOnTheFlyPointCreationActive?: boolean
   isGridVisible?: GridVisibility
@@ -65,6 +66,11 @@ export interface ReactGeoGebraState {
   perspective: any
 
   onAppletLoaded?: OnAppletLoadedFunc
+}
+
+export interface Rename {
+  oldName: string
+  newName: string
 }
 
 export interface XYPosition {
@@ -136,9 +142,14 @@ export interface AppParameters {
 
 export interface CustomAppParameters {
   debug?: boolean
-  reloadOnPropChange?: boolean
   onReady?: () => void
   LoadComponent?: React.FC
 }
 
 export type GeoGebraParameters = AppParameters & CustomAppParameters
+
+export interface ClientObj {
+  type: string
+  target: string
+  argument: string
+}
