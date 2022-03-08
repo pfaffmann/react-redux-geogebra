@@ -63,9 +63,58 @@ export interface ReactGeoGebraState {
   isOnTheFlyPointCreationActive?: boolean
   isGridVisible?: GridVisibility
   editorState: EditorState
-  perspective: any
+  perspective?: Perspective
+  views: Array<ViewChanged2D | ViewChanged3D>
+  mouseDown?: Mouse
 
   onAppletLoaded?: OnAppletLoadedFunc
+}
+
+export interface Perspective {
+  id: string
+  panes: Panes
+  views: Views
+  toolbar: Toolbar
+  input: Input
+  dockBar: DockBar
+}
+export interface Toolbar {
+  show: boolean
+  items: string
+  position: number
+  help: boolean
+}
+
+export interface Input {
+  show: boolean
+  cmd: boolean
+  top: string
+}
+
+export interface DockBar {
+  show: boolean
+  east: boolean
+}
+
+export type Views = Array<View>
+export interface View {
+  id: number
+  toolbar?: string
+  visible: boolean
+  inframe: boolean
+  stylebar: boolean
+  tab?: string
+  location: Array<number> | number | string
+  size: number
+  window: string
+}
+
+export type Panes = Array<Pane>
+
+export interface Pane {
+  location: string
+  divider: number
+  orientation: number
 }
 
 export interface Rename {
@@ -148,8 +197,38 @@ export interface CustomAppParameters {
 
 export type GeoGebraParameters = AppParameters & CustomAppParameters
 
-export interface ClientObj {
+export type ClientObj = (ViewChanged2D & ViewChanged3D & Dropdown & Mouse) & {
   type: string
-  target: string
-  argument: string
+  target?: string
+  argument?: string
+}
+
+export interface ViewChanged2D {
+  scale: number
+  viewNo: number
+  xZero: number
+  yZero: number
+  yscale: number
+}
+
+export interface ViewChanged3D {
+  scale: number
+  viewNo: number
+  xAngle: number
+  xZero: number
+  yZero: number
+  yscale: number
+  zAngle: number
+  zZero: number
+  zscale: number
+}
+
+interface Dropdown {
+  index: number
+}
+
+export interface Mouse {
+  x: number
+  y: number
+  viewNo: number
 }

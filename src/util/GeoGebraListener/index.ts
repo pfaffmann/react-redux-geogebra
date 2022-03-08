@@ -6,7 +6,8 @@ export * from './renameElementListener'
 export * from './updateElementListener'
 export * from './clientEventsListener'
 
-export const getElementFromGeoGebraApp = (app: any, objName: string) => {
+export const getElementFromGeoGebraApp = (app: any, objName?: string) => {
+  if (!objName) return
   const objectType = app.getObjectType(objName)
   let coordinates = undefined
   switch (objectType) {

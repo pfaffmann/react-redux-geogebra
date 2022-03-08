@@ -12,7 +12,14 @@ const App = () => {
   return (
     <div>
       <h1>GeoGebra</h1>
-      <ReactGeoGebra id='ggbApplet' />
+      <ReactGeoGebra id='ggbApplet' width={1200} />
+      <button
+        onClick={() => {
+          console.log(state.perspective?.views.filter((view) => view.visible))
+        }}
+      >
+        Click me
+      </button>
     </div>
   )
 }

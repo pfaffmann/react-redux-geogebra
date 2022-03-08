@@ -17,8 +17,10 @@ export const initialState: ReactGeoGebraState = {
     showMenuBar: true
   },
   mode: MODE_MOVE,
-  perspective: null,
-  editorState: { content: '', caret: [0] }
+  perspective: undefined,
+  editorState: { content: '', caret: [0] },
+  mouseDown: undefined,
+  views: []
 }
 
 const store: Store = configureStore(initialState)
