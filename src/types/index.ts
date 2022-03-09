@@ -20,7 +20,7 @@ export interface ReactGeoGebraState {
   euclidianViews?: Array<EuclidianView>
   euclidianView3D?: EuclidianView3D
   //ADD spreadsheetview, algebraview, ...
-
+  //ADD Humanreadable metainfos
   onAppletLoaded?: OnAppletLoadedFunc
 }
 
