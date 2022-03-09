@@ -117,7 +117,7 @@ export type Panes = Array<Pane>
 export interface Pane {
   location: string
   divider: number
-  orientation: number
+  orientation: number //0: waagrecht 1: senkrecht
 }
 
 export interface Rename {
