@@ -7,7 +7,8 @@ export * from './updateElementListener'
 export * from './clientEventsListener'
 
 export const getElementFromGeoGebraApp = (app: any, objName?: string) => {
-  if (!objName) return
+  const e: Element = { name: objName || '' }
+  if (!objName) return e
   const objectType = app.getObjectType(objName)
   let coordinates = undefined
   switch (objectType) {
@@ -19,8 +20,6 @@ export const getElementFromGeoGebraApp = (app: any, objName?: string) => {
       }
       break
     case 'list':
-      const v1 = app.getListValue(objName, 0)
-      console.log(v1)
       break
     default:
       break

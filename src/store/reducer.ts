@@ -100,29 +100,30 @@ const reactGeogebraReducer = (
       const newState: ReactGeoGebraState = { ...state, perspective }
       return newState
     }
+    case constants.RESET_VIEW_IN_STORE:
+      return { ...state, views: [] }
     case constants.SET_VIEW_2D_IN_STORE: {
       const view = action.payload
       if (!view) return state
+      view.viewNo = view.viewNo === 2 ? 16 : view.viewNo //GeoGebra indicates Graphics 2 with 16 but here with 2
 
       const ids = state.perspective?.views
         .filter((view) => view.visible)
-        .map((view) => (view.id === 16 ? 2 : view.id))
-      if (!(ids?.includes(1) || ids?.includes(2)))
-        return { ...state, views: [] }
+        .map((view) => view.id)
 
-      const tmpState: ReactGeoGebraState = {
-        ...state,
-        views: !state.views.map((v) => v.viewNo).includes(view.viewNo)
-          ? state.views.concat(view)
-          : [...state.views.filter((v) => v.viewNo !== view.viewNo), view]
+      const tmpViews = state.views
+
+      let newViews = []
+      if (tmpViews.map((v) => v.viewNo).includes(view.viewNo)) {
+        const index = tmpViews.findIndex((v) => v.viewNo === view.viewNo)
+        if (index !== -1) tmpViews[index] = view
+        newViews = tmpViews
+      } else {
+        newViews = tmpViews.concat(view)
       }
 
-      ////HIER WEITER MACHEN
-      const newState: ReactGeoGebraState = {
-        ...state,
-        views: tmpState.views.filter((v) => ids.includes(v.viewNo))
-      }
-      return newState
+      const intersectingViews = newViews.filter((v) => ids?.includes(v.viewNo))
+      return { ...state, views: intersectingViews }
     }
 
     case constants.ON_APPLET_LOADED:

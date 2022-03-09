@@ -45,6 +45,9 @@ export const setView3DinStore = (view: ViewChanged3D) =>
 export const setMouseDowninStore = (mouse: Mouse) =>
   createAction(constants.SET_MOUSEDOWN_IN_STORE, mouse)
 
+export const resetViewInStore = () =>
+  createAction(constants.RESET_VIEW_IN_STORE)
+
 export type ReactGeoGebraAction = ReturnType<
   | typeof onAppletLoaded
   | typeof addElementToStore
@@ -56,6 +59,7 @@ export type ReactGeoGebraAction = ReturnType<
   | typeof removeElementsAtCancel
   | typeof setModeInStore
   | typeof setPerspectiveInStore
+  | typeof resetViewInStore
   | typeof setView2DinStore
   | typeof setView3DinStore
   | typeof setMouseDowninStore

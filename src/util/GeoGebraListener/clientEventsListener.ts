@@ -108,7 +108,13 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
           store.dispatch(actions.updateElementInStore(element))
           break
         case 'perspectiveChange':
+
         case 'viewChanged2D':
+          store.dispatch(
+            actions.setPerspectiveInStore(
+              perspectiveXML2JSON(app.getPerspectiveXML())
+            )
+          )
           const view: ViewChanged2D = {
             viewNo: clientObj.viewNo,
             xZero: clientObj.xZero,
@@ -117,11 +123,7 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
             yscale: clientObj.yscale
           }
           store.dispatch(actions.setView2DinStore(view))
-          store.dispatch(
-            actions.setPerspectiveInStore(
-              perspectiveXML2JSON(app.getPerspectiveXML())
-            )
-          )
+
           break
         case 'viewChanged3D':
           break
