@@ -4,9 +4,9 @@ import {
   OnAppletLoadedFunc,
   Rename,
   Perspective,
-  ViewChanged2D,
-  ViewChanged3D,
-  Mouse
+  Mouse,
+  EuclidianView,
+  EuclidianView3D
 } from '../types'
 import * as constants from './constants'
 
@@ -38,15 +38,15 @@ export const setModeInStore = (mode: number) =>
 export const setPerspectiveInStore = (perspective: Perspective) =>
   createAction(constants.SET_PERSPECTIVE_IN_STORE, perspective)
 
-export const setView2DinStore = (view: ViewChanged2D) =>
-  createAction(constants.SET_VIEW_2D_IN_STORE, view)
-export const setView3DinStore = (view: ViewChanged3D) =>
-  createAction(constants.SET_VIEW_3D_IN_STORE, view)
 export const setMouseDowninStore = (mouse: Mouse) =>
   createAction(constants.SET_MOUSEDOWN_IN_STORE, mouse)
 
-export const resetViewInStore = () =>
-  createAction(constants.RESET_VIEW_IN_STORE)
+export const setEuclidianViewsInStore = (
+  euclidianViews: Array<EuclidianView>
+) => createAction(constants.SET_EUCLIDIANVIEWS_IN_STORE, euclidianViews)
+
+export const setEuclidianView3DInStore = (euclidianView3D: EuclidianView3D) =>
+  createAction(constants.SET_EUCLIDIANVIEW3D_IN_STORE, euclidianView3D)
 
 export type ReactGeoGebraAction = ReturnType<
   | typeof onAppletLoaded
@@ -59,8 +59,7 @@ export type ReactGeoGebraAction = ReturnType<
   | typeof removeElementsAtCancel
   | typeof setModeInStore
   | typeof setPerspectiveInStore
-  | typeof resetViewInStore
-  | typeof setView2DinStore
-  | typeof setView3DinStore
   | typeof setMouseDowninStore
+  | typeof setEuclidianViewsInStore
+  | typeof setEuclidianView3DInStore
 >

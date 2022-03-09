@@ -1,10 +1,14 @@
 import { AnyAction, Store } from 'redux'
 
-import { ClientObj, ReactGeoGebraState, ViewChanged2D } from '../../types'
+import { ReactGeoGebraState, Mouse } from '../../types'
 import * as actions from '../../store/actions'
 import { getElementFromGeoGebraApp } from '.'
 import { throttle } from 'throttle-debounce'
-import { perspectiveXML2JSON } from '../perspectiveXML2Json'
+import {
+  euclidianView3DXML2JSON,
+  euclidianViewXML2JSON,
+  perspectiveXML2JSON
+} from '../XML2Json'
 
 export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
   if (!app) return
@@ -15,124 +19,124 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
     store.dispatch(actions.removeElementsAtCancel(names))
   }
 
-  const throttledClientListenerFunc = throttle(
-    250,
-    false,
-    (clientObj: ClientObj) => {
-      console.log(clientObj)
-      switch (clientObj.type) {
-        case 'addMacro':
-          break
-        case 'addPolygon':
-          //addPolygon undefined undefined
-          break
-        case 'addPolygonComplete':
-          //addPolygonComplete name name
+  const throttledClientListenerFunc = throttle(250, false, (clientObj) => {
+    console.log(clientObj)
+    switch (clientObj.type) {
+      case 'addMacro':
+        break
+      case 'addPolygon':
+        //addPolygon undefined undefined
+        break
+      case 'addPolygonComplete':
+        //addPolygonComplete name name
 
-          break
-        case 'algebraPanelSelected':
-          break
-        case 'deleteGeos':
-          break
-        case 'deselect':
-          //deselect undefined undefined
-          removeElementsAtCancelFunc()
-          store.dispatch(actions.deselectElements())
-          break
-        case 'dragEnd':
-          break
-        case 'dropdownClosed':
-          break
-        case 'dropdownItemFocused':
-          break
-        case 'dropdownOpened':
-          break
-        case 'editorKeyTyped':
-          break
-        case 'editorStart':
-          //is called after Loading the Applet
-          break
-        case 'editorStop':
-          break
-        case 'export':
-          break
-        case 'mouseDown':
-          break
-        case 'movedGeos':
-          break
-        case 'movingGeos':
-          break
-        case 'openDialog':
-          break
-        case 'openMenu':
-          break
-        case 'pasteElms':
-          break
-        case 'pasteElmsComplete':
-          break
+        break
+      case 'algebraPanelSelected':
+        break
+      case 'deleteGeos':
+        break
+      case 'deselect':
+        //deselect undefined undefined
+        removeElementsAtCancelFunc()
+        store.dispatch(actions.deselectElements())
+        break
+      case 'dragEnd':
+        break
+      case 'dropdownClosed':
+        break
+      case 'dropdownItemFocused':
+        break
+      case 'dropdownOpened':
+        break
+      case 'editorKeyTyped':
+        break
+      case 'editorStart':
+        //is called after Loading the Applet
+        break
+      case 'editorStop':
+        break
+      case 'export':
+        break
+      case 'mouseDown':
+        const mouse: Mouse = {
+          x: clientObj.x,
+          y: clientObj.y,
+          z: clientObj.z || 0,
+          viewNo: clientObj.viewNo === 2 ? 16 : clientObj.viewNo
+        }
+        store.dispatch(actions.setMouseDowninStore(mouse))
+        break
+      case 'movedGeos':
+        break
+      case 'movingGeos':
+        break
+      case 'openDialog':
+        break
+      case 'openMenu':
+        break
+      case 'pasteElms':
+        break
+      case 'pasteElmsComplete':
+        break
 
-        case 'redo':
-          break
-        case 'relationTool':
-          break
-        case 'removeMacro':
-          break
-        case 'renameComplete':
-          break
-        case 'renameMacro':
-          break
-        case 'select':
-          store.dispatch(actions.addNameToSelctedElements(clientObj.target))
-          break
-        case 'setMode':
-          store.dispatch(actions.setModeInStore(Number(clientObj.argument)))
-          removeElementsAtCancelFunc()
-          break
-        case 'showNavigationBar':
-          break
-        case 'showStyleBar':
-          //showStyleBar undefined [true,1] | [false,1] 1-> Graphics 1, 2->Algebra, 4->Spreadsheet, 8->CAS, 16->Graphics 2, 512->Graphics3D
-          break
-        case 'sidePanelClosed':
-          break
-        case 'sidePanelOpened':
-          break
-        case 'tablePanelSelected':
-          break
-        case 'toolsPanelSelected':
-          break
-        case 'undo':
-          break
-        case 'updateStyle':
-          const element = getElementFromGeoGebraApp(app, clientObj.target)
-          store.dispatch(actions.updateElementInStore(element))
-          break
-        case 'perspectiveChange':
-
-        case 'viewChanged2D':
-          store.dispatch(
-            actions.setPerspectiveInStore(
-              perspectiveXML2JSON(app.getPerspectiveXML())
-            )
+      case 'redo':
+        break
+      case 'relationTool':
+        break
+      case 'removeMacro':
+        break
+      case 'renameComplete':
+        break
+      case 'renameMacro':
+        break
+      case 'select':
+        store.dispatch(actions.addNameToSelctedElements(clientObj.target))
+        break
+      case 'setMode':
+        store.dispatch(actions.setModeInStore(Number(clientObj.argument)))
+        removeElementsAtCancelFunc()
+        break
+      case 'showNavigationBar':
+        break
+      case 'showStyleBar':
+        //showStyleBar undefined [true,1] | [false,1] 1-> Graphics 1, 2->Algebra, 4->Spreadsheet, 8->CAS, 16->Graphics 2, 512->Graphics3D
+        break
+      case 'sidePanelClosed':
+        break
+      case 'sidePanelOpened':
+        break
+      case 'tablePanelSelected':
+        break
+      case 'toolsPanelSelected':
+        break
+      case 'undo':
+        break
+      case 'updateStyle':
+        const element = getElementFromGeoGebraApp(app, clientObj.target)
+        store.dispatch(actions.updateElementInStore(element))
+        break
+      case 'perspectiveChange':
+      case 'viewChanged3D':
+      case 'viewChanged2D':
+        const xml = app.getXML()
+        store.dispatch(
+          actions.setEuclidianViewsInStore(euclidianViewXML2JSON(xml))
+        )
+        store.dispatch(
+          actions.setEuclidianView3DInStore(euclidianView3DXML2JSON(xml))
+        )
+        store.dispatch(
+          actions.setPerspectiveInStore(
+            perspectiveXML2JSON(app.getPerspectiveXML())
           )
-          const view: ViewChanged2D = {
-            viewNo: clientObj.viewNo,
-            xZero: clientObj.xZero,
-            scale: clientObj.scale,
-            yZero: clientObj.yZero,
-            yscale: clientObj.yscale
-          }
-          store.dispatch(actions.setView2DinStore(view))
+        )
 
-          break
-        case 'viewChanged3D':
-          break
+        break
 
-        default:
-          break
-      }
+      default:
+        break
     }
-  )
+  })
 
   app.registerClientListener(throttledClientListenerFunc)
 }

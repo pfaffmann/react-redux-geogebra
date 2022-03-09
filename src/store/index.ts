@@ -19,8 +19,7 @@ export const initialState: ReactGeoGebraState = {
   mode: MODE_MOVE,
   perspective: undefined,
   editorState: { content: '', caret: [0] },
-  mouseDown: undefined,
-  views: []
+  mouseDown: undefined
 }
 
 const store: Store = configureStore(initialState)

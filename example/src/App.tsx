@@ -15,7 +15,7 @@ const App = () => {
       <ReactGeoGebra id='ggbApplet' width={1200} />
       <button
         onClick={() => {
-          console.log(state.perspective?.views.filter((view) => view.visible))
+          //console.log(state.perspective?.views.filter((view) => view.visible))
         }}
       >
         Click me

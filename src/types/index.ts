@@ -5,6 +5,25 @@ declare global {
     GGBApplet: any
   }
 }
+
+export interface ReactGeoGebraState {
+  id: AppletId
+  params: Partial<GeoGebraParameters>
+  elements: Elements
+  selectedElementNames: Array<string>
+  mode: number
+  isOnTheFlyPointCreationActive?: boolean
+  isGridVisible?: GridVisibility
+  editorState: EditorState
+  perspective?: Perspective
+  mouseDown?: Mouse
+  euclidianViews?: Array<EuclidianView>
+  euclidianView3D?: EuclidianView3D
+  //ADD spreadsheetview, algebraview, ...
+
+  onAppletLoaded?: OnAppletLoadedFunc
+}
+
 export type AppletId = string
 type LabelStyle = 0 | 1 | 2 | 3
 type PointSize = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
@@ -53,22 +72,6 @@ type EditorState = {
 }
 
 export type OnAppletLoadedFunc = () => void
-
-export interface ReactGeoGebraState {
-  id: AppletId
-  params: Partial<GeoGebraParameters>
-  elements: Elements
-  selectedElementNames: Array<string>
-  mode: number
-  isOnTheFlyPointCreationActive?: boolean
-  isGridVisible?: GridVisibility
-  editorState: EditorState
-  perspective?: Perspective
-  views: Array<ViewChanged2D | ViewChanged3D>
-  mouseDown?: Mouse
-
-  onAppletLoaded?: OnAppletLoadedFunc
-}
 
 export interface Perspective {
   id: string
@@ -197,38 +200,91 @@ export interface CustomAppParameters {
 
 export type GeoGebraParameters = AppParameters & CustomAppParameters
 
-export type ClientObj = (ViewChanged2D & ViewChanged3D & Dropdown & Mouse) & {
-  type: string
-  target?: string
-  argument?: string
-}
-
-export interface ViewChanged2D {
-  scale: number
-  viewNo: number
-  xZero: number
-  yZero: number
-  yscale: number
-}
-
-export interface ViewChanged3D {
-  scale: number
-  viewNo: number
-  xAngle: number
-  xZero: number
-  yZero: number
-  yscale: number
-  zAngle: number
-  zZero: number
-  zscale: number
-}
-
-interface Dropdown {
-  index: number
-}
-
 export interface Mouse {
   x: number
   y: number
+  z: number
   viewNo: number
 }
+export interface EuclidianView extends BaseEuclidianView {
+  viewNumber: ViewNumber
+}
+
+export interface BaseEuclidianView {
+  size: Size
+  coordSystem: CoordSystem
+  evSettings: EvSettings
+  bgColor: Color
+  axesColor: Color
+  gridColor: Color
+  lineStyle: LineStyle
+  axis: Axes
+}
+
+export interface EuclidianView3D extends BaseEuclidianView {
+  coordSystem: CoordSystem3D
+  plate: Plate
+  clipping: Clipping
+  projection: Projection
+}
+
+export interface Clipping {
+  show: boolean
+  use: boolean
+  size: number
+}
+export interface Projection {
+  type: number
+}
+export interface Plate {
+  show: boolean
+}
+
+export interface ViewNumber {
+  viewNo: number
+}
+
+export interface Size {
+  width: number
+  height: number
+}
+
+export interface CoordSystem {
+  xZero: number
+  yZero: number
+  scale: number
+  yscale: number
+}
+
+export interface CoordSystem3D extends CoordSystem {
+  zZero: number
+  xAngle: number
+  zAngle: number
+}
+
+export interface EvSettings {
+  axes: boolean
+  grid: boolean
+  gridIsBold: boolean
+  rightAngleStyle: number
+  checkBoxSize: number
+  gridType: number
+}
+
+export type Color = Record<'r' | 'g' | 'b', number>
+
+export interface LineStyle {
+  axes: number
+  grid: number
+}
+
+export interface Axis {
+  id: number
+  show: boolean
+  label: string
+  unitLabel: string
+  tickStyle: number
+  showNumbers: boolean
+}
+
+export type Axes = Array<Axis>

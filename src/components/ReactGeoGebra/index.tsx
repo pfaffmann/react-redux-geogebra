@@ -9,6 +9,10 @@ import {
   updateElementListener
 } from '../../util/GeoGebraListener'
 import { useStore } from '../../store/hooks'
+import {
+  setInitalPerspective,
+  setInitialEuclidianViews
+} from '../../util/GeoGebraInitalStoreManagement'
 
 const Geogebra: React.FC<GeoGebraParameters> = (props) => {
   const refProps = useRef(props)
@@ -35,6 +39,9 @@ const Geogebra: React.FC<GeoGebraParameters> = (props) => {
     if (appletOnLoad) appletOnLoad()
     const app = window[id as any]
     if (!app) return
+    //initial State management-------------------------------------------
+    setInitalPerspective(app, store)
+    setInitialEuclidianViews(app, store)
     //add Store Listeners -----------------------------------------------
     addElementListener(app, store)
     removeElementListener(app, store)
