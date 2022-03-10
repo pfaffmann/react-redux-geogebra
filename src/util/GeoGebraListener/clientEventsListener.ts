@@ -92,11 +92,7 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
         store.dispatch(actions.setModeInStore(Number(clientObj.argument)))
         removeElementsAtCancelFunc()
         break
-      case 'showNavigationBar':
-        break
-      case 'showStyleBar':
-        //showStyleBar undefined [true,1] | [false,1] 1-> Graphics 1, 2->Algebra, 4->Spreadsheet, 8->CAS, 16->Graphics 2, 512->Graphics3D
-        break
+
       case 'sidePanelClosed':
         break
       case 'sidePanelOpened':
@@ -111,6 +107,9 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
         const element = getElementFromGeoGebraApp(app, clientObj.target)
         store.dispatch(actions.updateElementInStore(element))
         break
+      case 'showStyleBar':
+      //showStyleBar undefined [true,1] | [false,1] 1-> Graphics 1, 2->Algebra, 4->Spreadsheet, 8->CAS, 16->Graphics 2, 512->Graphics3D
+      case 'showNavigationBar':
       case 'perspectiveChange':
       case 'viewChanged3D':
       case 'viewChanged2D':
