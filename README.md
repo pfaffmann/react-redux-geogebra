@@ -17,13 +17,13 @@ Try the demo: https://saunaaa.github.io/react-redux-geogebra
 ## Install
 
 ```bash
-npm install --save redux-geogebra
+npm install --save react-redux-geogebra
 ```
 
 or
 
 ```bash
-yarn add redux-geogebra
+yarn add react-redux-geogebra
 ```
 
 ## Usage
