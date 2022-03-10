@@ -1,0 +1,10 @@
+export const viewNamesMap = new Map<number, string>()
+//1-> Graphics 1, 2->Algebra, 4->Spreadsheet, 8->CAS, 16->Graphics 2, 512->Graphics3D
+viewNamesMap.set(1, 'Graphics')
+viewNamesMap.set(2, 'Algebra')
+viewNamesMap.set(4, 'Spreadsheet')
+viewNamesMap.set(8, 'CAS')
+viewNamesMap.set(16, 'Graphics 2')
+viewNamesMap.set(32, 'Construction Protocol')
+viewNamesMap.set(64, 'Probability Calculator')
+viewNamesMap.set(512, '3D Graphics')

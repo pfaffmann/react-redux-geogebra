@@ -22,9 +22,25 @@ export interface ReactGeoGebraState {
   algebraView?: AlgebraView
   spreadsheetView?: SpreadsheetView
   probabilityCalculator?: ProbabilityCalculator
-  //ADD spreadsheetview, algebraview, ...
+  metaInformation?: MetaInformation // Human readable Meta Information
   //ADD Humanreadable metainfos
   onAppletLoaded?: OnAppletLoadedFunc
+}
+
+export interface MetaInformation {
+  panels?: Array<Panel>
+}
+
+export interface Panel {
+  viewNo: number
+  name: string
+  locations?: Array<Location>
+}
+
+export interface Location {
+  locationNo: number
+  location: 'top' | 'bottom' | 'left' | 'right' | ''
+  children?: Location
 }
 
 export type AppletId = string
