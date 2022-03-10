@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-
+import ReactJson from 'react-json-view'
 import { ReactGeoGebra, useStoreState } from 'react-redux-geogebra'
-
+import './App.css'
 const App = () => {
   const state = useStoreState((state) => state)
 
@@ -10,16 +10,13 @@ const App = () => {
   }, [state])
 
   return (
-    <div>
-      <h1>GeoGebra</h1>
-      <ReactGeoGebra id='ggbApplet' width={1200} />
-      <button
-        onClick={() => {
-          //console.log(state.perspective?.views.filter((view) => view.visible))
-        }}
-      >
-        Click me
-      </button>
+    <div className='app'>
+      <h1>React Redux GeoGebra Example</h1>
+      <ReactGeoGebra id='ggbApplet' width={800} />
+      <div className='container'>
+        <h2>Store State</h2>
+        <ReactJson src={state} name='state' />
+      </div>
     </div>
   )
 }

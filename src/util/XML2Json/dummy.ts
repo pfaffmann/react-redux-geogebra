@@ -180,7 +180,8 @@ export const allViews = `<?xml version=\"1.0\" encoding=\"utf-8\"?>
 <entry val=\"\"/>
 </statisticsCollection></probabilityCalculator>
 <algebraView>
-	<mode val=\"3\"/>
+	<mode val=\"0\"/>
+	<collapsed val=\"1,2\"/>
 </algebraView>
 <kernel>
 	<continuous val=\"false\"/>

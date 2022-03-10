@@ -19,6 +19,9 @@ export interface ReactGeoGebraState {
   mouseDown?: Mouse
   euclidianViews?: Array<EuclidianView>
   euclidianView3D?: EuclidianView3D
+  algebraView?: AlgebraView
+  spreadsheetView?: SpreadsheetView
+  probabilityCalculator?: ProbabilityCalculator
   //ADD spreadsheetview, algebraview, ...
   //ADD Humanreadable metainfos
   onAppletLoaded?: OnAppletLoadedFunc
@@ -135,11 +138,6 @@ export interface XYZPosition {
   z: number
 }
 
-export interface Dimensions {
-  width: number
-  height: number
-}
-
 export interface AppParameters {
   id: string
   appletOnLoad?: () => void
@@ -199,6 +197,67 @@ export interface CustomAppParameters {
 }
 
 export type GeoGebraParameters = AppParameters & CustomAppParameters
+
+export interface ProbabilityCalculator {
+  distribution: Distribution
+  interval: Interval
+  statisticsCollection: StatisticsCollection
+}
+interface StatisticsCollection {
+  entry: Array<Value<string | number>>
+  procedure: string
+  mean: number | string
+  sd: number | string
+  n: number | string
+  count: number | string
+  mean2: number | string
+  sd2: number | string
+  n2: number | string
+  count2: number | string
+  nullHyp: number | string
+  level: number | string
+  tail: number | string
+  active: boolean
+  showExpected: boolean
+  showDiff: boolean
+  showRowPercent: boolean
+  showColPercent: boolean
+  columns: number
+}
+
+interface Interval {
+  mode: number
+  low: number
+  high: number
+}
+
+interface Distribution {
+  type: number
+  isCummulative: boolean
+  parameters: string
+}
+
+export interface SpreadsheetView {
+  size: Size
+  prefCellSize: Size
+  selection: Selection
+}
+
+export interface Selection {
+  hScroll: number
+  vScroll: number
+  column: number
+  row: number
+}
+
+export interface AlgebraView {
+  mode: Value<number>
+  collapsed?: Value<string>
+}
+
+export type Value<T> = {
+  val: T
+}
 
 export interface Mouse {
   x: number

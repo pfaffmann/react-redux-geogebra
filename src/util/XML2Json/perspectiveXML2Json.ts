@@ -1,7 +1,7 @@
 import { xmlParser } from '.'
 import { Perspective } from '../../types'
 
-export const perspectiveXML2JSON: any = (xml: string) => {
+export const perspectiveXML2Json: any = (xml: string) => {
   const json = xmlParser.parse(xml)
   const perspective: Perspective = json.perspective
   perspective.panes = Array.isArray(json.perspective.panes.pane)

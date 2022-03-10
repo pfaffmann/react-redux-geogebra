@@ -115,6 +115,21 @@ const reactGeogebraReducer = (
       if (!euclidianView3D) return state
       return { ...state, euclidianView3D }
     }
+    case constants.SET_ALGEBRAVIEW_IN_STORE: {
+      const algebraView = action.payload
+      if (!algebraView) return state
+      return { ...state, algebraView }
+    }
+    case constants.SET_SPREADSHEETVIEW_IN_STORE: {
+      const spreadsheetView = action.payload
+      if (!spreadsheetView) return state
+      return { ...state, spreadsheetView }
+    }
+    case constants.SET_PROBABILITYCALCULATOR_IN_STORE: {
+      const probabilityCalculator = action.payload
+      if (!probabilityCalculator) return state
+      return { ...state, probabilityCalculator }
+    }
     case constants.ON_APPLET_LOADED:
     default:
       return state

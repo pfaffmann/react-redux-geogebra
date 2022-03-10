@@ -6,7 +6,10 @@ import {
   Perspective,
   Mouse,
   EuclidianView,
-  EuclidianView3D
+  EuclidianView3D,
+  AlgebraView,
+  ProbabilityCalculator,
+  SpreadsheetView
 } from '../types'
 import * as constants from './constants'
 
@@ -48,6 +51,19 @@ export const setEuclidianViewsInStore = (
 export const setEuclidianView3DInStore = (euclidianView3D: EuclidianView3D) =>
   createAction(constants.SET_EUCLIDIANVIEW3D_IN_STORE, euclidianView3D)
 
+export const setAlgebraViewInStore = (algebraView: AlgebraView) =>
+  createAction(constants.SET_ALGEBRAVIEW_IN_STORE, algebraView)
+
+export const setSpreadsheetViewInStore = (spreadsheetView: SpreadsheetView) =>
+  createAction(constants.SET_SPREADSHEETVIEW_IN_STORE, spreadsheetView)
+export const setProbabilityCalculatorInStore = (
+  probabilityCalculator: ProbabilityCalculator
+) =>
+  createAction(
+    constants.SET_PROBABILITYCALCULATOR_IN_STORE,
+    probabilityCalculator
+  )
+
 export type ReactGeoGebraAction = ReturnType<
   | typeof onAppletLoaded
   | typeof addElementToStore
@@ -62,4 +78,7 @@ export type ReactGeoGebraAction = ReturnType<
   | typeof setMouseDowninStore
   | typeof setEuclidianViewsInStore
   | typeof setEuclidianView3DInStore
+  | typeof setAlgebraViewInStore
+  | typeof setProbabilityCalculatorInStore
+  | typeof setSpreadsheetViewInStore
 >

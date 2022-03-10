@@ -1,11 +1,5 @@
 import { Element } from '../../types'
 
-export * from './addElementListener'
-export * from './removeElementListener'
-export * from './renameElementListener'
-export * from './updateElementListener'
-export * from './clientEventsListener'
-
 export const getElementFromGeoGebraApp = (app: any, objName?: string) => {
   const e: Element = { name: objName || '' }
   if (!objName) return e
@@ -58,3 +52,9 @@ export const getElementFromGeoGebraApp = (app: any, objName?: string) => {
 
   return element
 }
+
+export * from './addElementListener'
+export * from './removeElementListener'
+export * from './renameElementListener'
+export * from './updateElementListener'
+export * from './clientEventsListener'

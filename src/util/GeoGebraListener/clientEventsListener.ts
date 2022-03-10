@@ -4,11 +4,7 @@ import { ReactGeoGebraState, Mouse } from '../../types'
 import * as actions from '../../store/actions'
 import { getElementFromGeoGebraApp } from '.'
 import { throttle } from 'throttle-debounce'
-import {
-  euclidianView3DXML2JSON,
-  euclidianViewXML2JSON,
-  perspectiveXML2JSON
-} from '../XML2Json'
+import { xml2Store } from '../GeoGebraStoreManagement'
 
 export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
   if (!app) return
@@ -119,18 +115,8 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
       case 'viewChanged3D':
       case 'viewChanged2D':
         const xml = app.getXML()
-        store.dispatch(
-          actions.setEuclidianViewsInStore(euclidianViewXML2JSON(xml))
-        )
-        store.dispatch(
-          actions.setEuclidianView3DInStore(euclidianView3DXML2JSON(xml))
-        )
-        store.dispatch(
-          actions.setPerspectiveInStore(
-            perspectiveXML2JSON(app.getPerspectiveXML())
-          )
-        )
-
+        const perspectiveXML = app.getPerspectiveXML()
+        xml2Store(xml, perspectiveXML, store)
         break
 
       default:

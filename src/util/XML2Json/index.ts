@@ -9,5 +9,5 @@ const parsingOptions = {
   processEntities: true
 }
 export const xmlParser = new XMLParser(parsingOptions)
-export * from './euclidianViewXML2Json'
+export * from './viewsXML2Json'
 export * from './perspectiveXML2Json'
