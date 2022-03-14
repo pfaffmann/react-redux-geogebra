@@ -4,7 +4,7 @@ import { ReactGeoGebraState, Mouse } from '../../types'
 import * as actions from '../../store/actions'
 import { getElementFromGeoGebraApp } from '.'
 import { throttle } from 'throttle-debounce'
-import { xml2Store } from '../GeoGebraStoreManagement'
+import { setMetaInformation, xml2Store } from '../GeoGebraStoreManagement'
 
 export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
   if (!app) return
@@ -16,7 +16,6 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
   }
 
   const throttledClientListenerFunc = throttle(250, false, (clientObj) => {
-    console.log(clientObj)
     switch (clientObj.type) {
       case 'addMacro':
         break
@@ -91,6 +90,7 @@ export const clientEventListener = (app: any, store: Store<any, AnyAction>) => {
       case 'setMode':
         store.dispatch(actions.setModeInStore(Number(clientObj.argument)))
         removeElementsAtCancelFunc()
+        setMetaInformation(store)
         break
 
       case 'sidePanelClosed':

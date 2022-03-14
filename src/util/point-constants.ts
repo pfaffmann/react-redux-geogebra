@@ -11,3 +11,16 @@ export const POINT = {
   TRIANGLE_WEST: 9,
   FULL_DOT_NO_OUTLINE: 10
 }
+
+export const pointMap = new Map<number, string>()
+pointMap.set(0, 'FULL_DOT')
+pointMap.set(1, 'CROSS')
+pointMap.set(2, 'EMPTY_DOT')
+pointMap.set(3, 'PLUS_SIGN')
+pointMap.set(4, 'FULL_DIAMOND')
+pointMap.set(5, 'EMPTY_DIAMOND')
+pointMap.set(6, 'TRIANGLE_NORTH')
+pointMap.set(7, 'TRIANGLE_SOUTH')
+pointMap.set(8, 'TRIANGLE_EAST')
+pointMap.set(9, 'TRIANGLE_WEST')
+pointMap.set(10, 'FULL_DOT_NO_OUTLINE')

@@ -90,7 +90,8 @@ const reactGeogebraReducer = (
     }
     case constants.SET_MODE_IN_STORE: {
       const mode = action.payload
-      if (!mode) return state
+
+      if (typeof mode === 'undefined') return state
       const newState: ReactGeoGebraState = { ...state, mode }
       return newState
     }
@@ -129,6 +130,11 @@ const reactGeogebraReducer = (
       const probabilityCalculator = action.payload
       if (!probabilityCalculator) return state
       return { ...state, probabilityCalculator }
+    }
+    case constants.SET_METAINFORMATION_IN_STORE: {
+      const metaInformation = action.payload
+      if (!metaInformation) return state
+      return { ...state, metaInformation }
     }
     case constants.ON_APPLET_LOADED:
     default:

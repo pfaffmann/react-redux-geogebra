@@ -9,10 +9,12 @@ import {
   EuclidianView3D,
   AlgebraView,
   ProbabilityCalculator,
-  SpreadsheetView
+  SpreadsheetView,
+  MetaInformation
 } from '../types'
 import * as constants from './constants'
 
+/*   SNIPPET rea   */
 export const addElementToStore = (element: Element) =>
   createAction(constants.ADD_ELEMENT_TO_STORE, element)
 
@@ -64,6 +66,9 @@ export const setProbabilityCalculatorInStore = (
     probabilityCalculator
   )
 
+export const setMetainformationInStore = (metainformation: MetaInformation) =>
+  createAction(constants.SET_METAINFORMATION_IN_STORE, metainformation)
+
 export type ReactGeoGebraAction = ReturnType<
   | typeof onAppletLoaded
   | typeof addElementToStore
@@ -81,4 +86,5 @@ export type ReactGeoGebraAction = ReturnType<
   | typeof setAlgebraViewInStore
   | typeof setProbabilityCalculatorInStore
   | typeof setSpreadsheetViewInStore
+  | typeof setMetainformationInStore
 >

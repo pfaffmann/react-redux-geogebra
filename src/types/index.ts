@@ -28,19 +28,20 @@ export interface ReactGeoGebraState {
 }
 
 export interface MetaInformation {
+  mode?: string
   panels?: Array<Panel>
 }
 
 export interface Panel {
   viewNo: number
   name: string
-  locations?: Array<Location>
+  location: Location
 }
 
 export interface Location {
-  locationNo: number
-  location: 'top' | 'bottom' | 'left' | 'right' | ''
-  children?: Location
+  position: 'top' | 'bottom' | 'left' | 'right' | ''
+  location: string
+  level: number
 }
 
 export type AppletId = string

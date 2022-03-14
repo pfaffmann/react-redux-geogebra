@@ -475,3 +475,325 @@ export const DEFAULT_HIGHLIGHTER_SIZE = 20
  * max line thickness of highlighter
  */
 export const MAX_PEN_HIGHLIGHTER_SIZE = 30
+
+export const modeMap = new Map<number, string>()
+
+modeMap.set(0, 'MODE_MOVE')
+
+modeMap.set(1, 'MODE_POINT')
+
+modeMap.set(2, 'MODE_JOIN')
+
+modeMap.set(3, 'MODE_PARALLEL')
+
+modeMap.set(4, 'MODE_ORTHOGONAL')
+
+modeMap.set(5, 'MODE_INTERSECT')
+
+modeMap.set(6, 'MODE_DELETE')
+
+modeMap.set(7, 'MODE_VECTOR')
+
+modeMap.set(8, 'MODE_LINE_BISECTOR')
+
+modeMap.set(9, 'MODE_ANGULAR_BISECTOR')
+
+modeMap.set(10, 'MODE_CIRCLE_TWO_POINTS')
+
+modeMap.set(11, 'MODE_CIRCLE_THREE_POINTS')
+
+modeMap.set(12, 'MODE_CONIC_FIVE_POINTS')
+
+modeMap.set(13, 'MODE_TANGENTS')
+
+modeMap.set(14, 'MODE_RELATION')
+
+modeMap.set(15, 'MODE_SEGMENT')
+
+modeMap.set(16, 'MODE_POLYGON')
+
+modeMap.set(17, 'MODE_TEXT')
+
+modeMap.set(18, 'MODE_RAY')
+
+modeMap.set(19, 'MODE_MIDPOINT')
+
+modeMap.set(20, 'MODE_CIRCLE_ARC_THREE_POINTS')
+
+modeMap.set(21, 'MODE_CIRCLE_SECTOR_THREE_POINTS')
+
+modeMap.set(22, 'MODE_CIRCUMCIRCLE_ARC_THREE_POINTS')
+
+modeMap.set(23, 'MODE_CIRCUMCIRCLE_SECTOR_THREE_POINTS')
+
+modeMap.set(24, 'MODE_SEMICIRCLE')
+
+modeMap.set(25, 'MODE_SLIDER')
+
+modeMap.set(26, 'MODE_IMAGE')
+
+modeMap.set(27, 'MODE_SHOW_HIDE_OBJECT')
+
+modeMap.set(28, 'MODE_SHOW_HIDE_LABEL')
+
+modeMap.set(29, 'MODE_MIRROR_AT_POINT')
+
+modeMap.set(30, 'MODE_MIRROR_AT_LINE')
+
+modeMap.set(31, 'MODE_TRANSLATE_BY_VECTOR')
+
+modeMap.set(32, 'MODE_ROTATE_BY_ANGLE')
+
+modeMap.set(33, 'MODE_DILATE_FROM_POINT')
+
+modeMap.set(34, 'MODE_CIRCLE_POINT_RADIUS')
+
+modeMap.set(35, 'MODE_COPY_VISUAL_STYLE')
+
+modeMap.set(36, 'MODE_ANGLE')
+
+modeMap.set(37, 'MODE_VECTOR_FROM_POINT')
+
+modeMap.set(38, 'MODE_DISTANCE')
+
+modeMap.set(39, 'MODE_MOVE_ROTATE')
+
+modeMap.set(40, 'MODE_TRANSLATEVIEW')
+
+modeMap.set(41, 'MODE_ZOOM_IN')
+
+modeMap.set(42, 'MODE_ZOOM_OUT')
+
+modeMap.set(43, 'MODE_SELECTION_LISTENER')
+
+modeMap.set(44, 'MODE_POLAR_DIAMETER')
+
+modeMap.set(45, 'MODE_SEGMENT_FIXED')
+
+modeMap.set(46, 'MODE_ANGLE_FIXED')
+
+modeMap.set(47, 'MODE_LOCUS')
+
+modeMap.set(48, 'MODE_MACRO')
+
+modeMap.set(49, 'MODE_AREA')
+
+modeMap.set(50, 'MODE_SLOPE')
+
+modeMap.set(51, 'MODE_REGULAR_POLYGON')
+
+modeMap.set(52, 'MODE_SHOW_HIDE_CHECKBOX')
+
+modeMap.set(53, 'MODE_COMPASSES')
+
+modeMap.set(54, 'MODE_MIRROR_AT_CIRCLE')
+
+modeMap.set(55, 'MODE_ELLIPSE_THREE_POINTS')
+
+modeMap.set(56, 'MODE_HYPERBOLA_THREE_POINTS')
+
+modeMap.set(57, 'MODE_PARABOLA')
+
+modeMap.set(58, 'MODE_FITLINE')
+
+modeMap.set(59, 'MODE_RECORD_TO_SPREADSHEET')
+
+modeMap.set(60, 'MODE_BUTTON_ACTION')
+
+modeMap.set(61, 'MODE_TEXTFIELD_ACTION')
+
+modeMap.set(62, 'MODE_PEN')
+
+modeMap.set(63, 'MODE_VISUAL_STYLE')
+
+modeMap.set(64, 'MODE_RIGID_POLYGON')
+
+modeMap.set(65, 'MODE_POLYLINE')
+
+modeMap.set(66, 'MODE_PROBABILITY_CALCULATOR')
+
+modeMap.set(67, 'MODE_ATTACH_DETACH')
+
+modeMap.set(68, 'MODE_FUNCTION_INSPECTOR')
+
+modeMap.set(69, 'MODE_INTERSECTION_CURVE')
+
+modeMap.set(70, 'MODE_VECTOR_POLYGON')
+
+modeMap.set(71, 'MODE_CREATE_LIST')
+
+modeMap.set(72, 'MODE_COMPLEX_NUMBER')
+
+modeMap.set(73, 'MODE_FREEHAND_SHAPE')
+
+modeMap.set(74, 'MODE_FREEHAND_FUNCTION')
+
+modeMap.set(75, 'MODE_EXTREMUM')
+
+modeMap.set(76, 'MODE_ROOTS')
+
+modeMap.set(77, 'MODE_SELECT')
+
+modeMap.set(78, 'MODE_SELECT_MOW')
+
+modeMap.set(79, 'MODE_GRASPABLE_MATH')
+
+modeMap.set(501, 'MODE_POINT_ON_OBJECT')
+
+modeMap.set(502, 'MODE_VIEW_IN_FRONT_OF')
+
+modeMap.set(510, 'MODE_PLANE_THREE_POINTS')
+
+modeMap.set(511, 'MODE_PLANE')
+
+modeMap.set(512, 'MODE_ORTHOGONAL_PLANE')
+
+modeMap.set(513, 'MODE_PARALLEL_PLANE')
+
+modeMap.set(514, 'MODE_ORTHOGONAL_THREE_D')
+
+modeMap.set(520, 'MODE_SPHERE_POINT_RADIUS')
+
+modeMap.set(521, 'MODE_SPHERE_TWO_POINTS')
+
+modeMap.set(522, 'MODE_CONE_TWO_POINTS_RADIUS')
+
+modeMap.set(523, 'MODE_CYLINDER_TWO_POINTS_RADIUS')
+
+modeMap.set(531, 'MODE_PRISM')
+
+modeMap.set(532, 'MODE_EXTRUSION')
+
+modeMap.set(533, 'MODE_PYRAMID')
+
+modeMap.set(534, 'MODE_CONIFY')
+
+modeMap.set(535, 'MODE_NET')
+
+modeMap.set(536, 'MODE_CUBE')
+
+modeMap.set(537, 'MODE_TETRAHEDRON')
+
+modeMap.set(538, 'MODE_SURFACE_OF_REVOLUTION')
+
+modeMap.set(540, 'MODE_ROTATEVIEW')
+
+modeMap.set(550, 'MODE_CIRCLE_POINT_RADIUS_DIRECTION')
+
+modeMap.set(551, 'MODE_CIRCLE_AXIS_POINT')
+
+modeMap.set(560, 'MODE_VOLUME')
+
+modeMap.set(570, 'MODE_ROTATE_AROUND_LINE')
+
+modeMap.set(571, 'MODE_MIRROR_AT_PLANE')
+
+modeMap.set(1001, 'MODE_CAS_EVALUATE')
+
+modeMap.set(1002, 'MODE_CAS_NUMERIC')
+
+modeMap.set(1003, 'MODE_CAS_KEEP_INPUT')
+
+modeMap.set(1004, 'MODE_CAS_EXPAND')
+
+modeMap.set(1005, 'MODE_CAS_FACTOR')
+
+modeMap.set(1006, 'MODE_CAS_SUBSTITUTE')
+
+modeMap.set(1007, 'MODE_CAS_SOLVE')
+
+modeMap.set(1008, 'MODE_CAS_DERIVATIVE')
+
+modeMap.set(1009, 'MODE_CAS_INTEGRAL')
+
+modeMap.set(1010, 'MODE_CAS_NUMERICAL_SOLVE')
+
+modeMap.set(2001, 'MODE_SPREADSHEET_CREATE_LIST')
+
+modeMap.set(2002, 'MODE_SPREADSHEET_CREATE_MATRIX')
+
+modeMap.set(2003, 'MODE_SPREADSHEET_CREATE_LISTOFPOINTS')
+
+modeMap.set(2004, 'MODE_SPREADSHEET_CREATE_TABLETEXT')
+
+modeMap.set(2005, 'MODE_SPREADSHEET_CREATE_POLYLINE')
+
+modeMap.set(2020, 'MODE_SPREADSHEET_ONEVARSTATS')
+
+modeMap.set(2021, 'MODE_SPREADSHEET_TWOVARSTATS')
+
+modeMap.set(2022, 'MODE_SPREADSHEET_MULTIVARSTATS')
+
+modeMap.set(2030, 'MODE_SPREADSHEET_SORT')
+
+modeMap.set(2031, 'MODE_SPREADSHEET_SORT_AZ')
+
+modeMap.set(2032, 'MODE_SPREADSHEET_SORT_ZA')
+
+modeMap.set(2040, 'MODE_SPREADSHEET_SUM')
+
+modeMap.set(2041, 'MODE_SPREADSHEET_AVERAGE')
+
+modeMap.set(2042, 'MODE_SPREADSHEET_COUNT')
+
+modeMap.set(2043, 'MODE_SPREADSHEET_MIN')
+
+modeMap.set(2044, 'MODE_SPREADSHEET_MAX')
+
+modeMap.set(101, 'MODE_SHAPE_LINE')
+
+modeMap.set(102, 'MODE_SHAPE_TRIANGLE')
+
+modeMap.set(103, 'MODE_SHAPE_SQUARE')
+
+modeMap.set(104, 'MODE_SHAPE_RECTANGLE')
+
+modeMap.set(105, 'MODE_SHAPE_RECTANGLE_ROUND_EDGES')
+
+modeMap.set(106, 'MODE_SHAPE_PENTAGON')
+
+modeMap.set(107, 'MODE_SHAPE_FREEFORM')
+
+modeMap.set(108, 'MODE_SHAPE_CIRCLE')
+
+modeMap.set(109, 'MODE_SHAPE_ELLIPSE')
+
+modeMap.set(110, 'MODE_ERASER')
+
+modeMap.set(111, 'MODE_HIGHLIGHTER')
+
+modeMap.set(112, 'MODE_PEN_PANEL')
+
+modeMap.set(113, 'MODE_TOOLS_PANEL')
+
+modeMap.set(114, 'MODE_MEDIA_PANEL')
+
+modeMap.set(115, 'MODE_VIDEO')
+
+modeMap.set(116, 'MODE_AUDIO')
+
+modeMap.set(117, 'MODE_CALCULATOR')
+
+modeMap.set(118, 'MODE_CAMERA')
+
+modeMap.set(119, 'MODE_PDF')
+
+modeMap.set(120, 'MODE_EXTENSION')
+
+modeMap.set(121, 'MODE_MEDIA_TEXT')
+
+modeMap.set(122, 'MODE_MASK')
+
+modeMap.set(123, 'MODE_TABLE')
+
+modeMap.set(124, 'MODE_EQUATION')
+
+modeMap.set(125, 'MODE_H5P')
+
+modeMap.set(126, 'MODE_MIND_MAP')
+
+modeMap.set(127, 'MODE_RULER')
+
+modeMap.set(128, 'MODE_PROTRACTOR')
+
+modeMap.set(100001, 'MACRO_MODE_ID_OFFSET')

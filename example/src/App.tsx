@@ -3,10 +3,7 @@ import ReactJson from 'react-json-view'
 import { ReactGeoGebra, useStoreState } from 'react-redux-geogebra'
 import './App.css'
 const App = () => {
-  const state = useStoreState((state) => ({
-    panes: state.perspective?.panes,
-    views: state.perspective?.views.filter((v) => v.visible)
-  }))
+  const state = useStoreState((state) => state)
 
   useEffect(() => {
     console.log(state)
@@ -18,7 +15,7 @@ const App = () => {
       <ReactGeoGebra id='ggbApplet' width={1200} />
       <div className='container'>
         <h2>Store State</h2>
-        <ReactJson src={state} name='state' />
+        <ReactJson src={state} name='state' collapsed />
       </div>
     </div>
   )
