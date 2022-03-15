@@ -8,13 +8,20 @@ import {
   renameElementListener,
   updateElementListener
 } from '../../util/GeoGebraListener'
-import { useStore } from '../../store/hooks'
+import { useStore, useStoreActions } from '../../store/hooks'
 import { initializeStore } from '../../util/GeoGebraStoreManagement'
 
 const Geogebra: React.FC<GeoGebraParameters> = (props) => {
   const refProps = useRef(props)
 
-  let { id, LoadComponent, onReady, appletOnLoad, debug } = refProps.current
+  let {
+    id,
+    LoadComponent,
+    onReady,
+    appletOnLoad,
+    debug,
+    isReloadingIfPropChanges
+  } = refProps.current
   if (!id) {
     id = 'ggb-applet'
   }
@@ -31,6 +38,10 @@ const Geogebra: React.FC<GeoGebraParameters> = (props) => {
   const [loading, setLoading] = useState(true)
   const [watchPropsChange, setWatchPropsChange] = useState(false)
   const store = useStore()
+  const setParamsInStore = useStoreActions(
+    (actions) => actions.setParamsInStore
+  )
+
   //gets called by GeoGebra after the Applet is ready
   const onAppletReady = () => {
     if (appletOnLoad) appletOnLoad()
@@ -39,6 +50,7 @@ const Geogebra: React.FC<GeoGebraParameters> = (props) => {
     //initial State management-------------------------------------------
 
     initializeStore(app, store)
+    setParamsInStore(props)
     //add Store Listeners -----------------------------------------------
     addElementListener(app, store)
     removeElementListener(app, store)
@@ -70,6 +82,33 @@ const Geogebra: React.FC<GeoGebraParameters> = (props) => {
       //unregisterListeners
     }
   }, [])
+  if (isReloadingIfPropChanges)
+    useEffect(() => {
+      const propsChanged = Object.keys(props).map((key: string) => {
+        if (
+          // @ts-ignore
+          typeof refProps.current[key] === 'function' &&
+          // @ts-ignore
+          typeof props[key] === 'function'
+        )
+          return false
+        if (
+          // @ts-ignore
+          typeof refProps.current[key] === 'object' &&
+          // @ts-ignore
+          typeof props[key] === 'object'
+        )
+          return false
+        // @ts-ignore
+        return refProps.current[key] !== props[key]
+      })
+      if (propsChanged.some((element) => element === true)) {
+        refProps.current = props
+        setParamsInStore(props)
+        setWatchPropsChange(true)
+      }
+    }, [props])
+
   useEffect(() => {
     if (window.GGBApplet) {
       const parameter = JSON.parse(JSON.stringify(refProps.current))
@@ -103,7 +142,8 @@ Geogebra.defaultProps = {
   height: 600,
   showToolBar: true,
   showAlgebraInput: true,
-  showMenuBar: true
+  showMenuBar: true,
+  isReloadingIfPropChanges: false
 }
 
 export default Geogebra

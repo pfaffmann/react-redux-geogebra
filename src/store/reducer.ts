@@ -136,6 +136,11 @@ const reactGeogebraReducer = (
       if (!metaInformation) return state
       return { ...state, metaInformation }
     }
+    case constants.SET_PARAMS_IN_STORE: {
+      const params = action.payload
+      if (!params) return state
+      return { ...state, params }
+    }
     case constants.ON_APPLET_LOADED:
     default:
       return state

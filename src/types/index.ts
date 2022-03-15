@@ -222,6 +222,7 @@ export interface CustomAppParameters {
   debug?: boolean
   onReady?: () => void
   LoadComponent?: React.FC
+  isReloadingIfPropChanges?: boolean
 }
 
 export type GeoGebraParameters = AppParameters & CustomAppParameters
