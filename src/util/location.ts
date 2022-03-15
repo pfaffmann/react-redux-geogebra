@@ -13,7 +13,7 @@ export const getLocation = (view: View): Location => {
     .join(' in ')
   const location: Location = {
     level,
-    position: locationNamesMap.get(locationArray[level - 1]) || '',
+    position: locationNamesMap.get(locationArray[0]) || '',
     location: locationString
   }
   return location
