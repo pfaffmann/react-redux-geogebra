@@ -32,9 +32,20 @@ export interface MetaInformation {
   panels?: Array<Panel>
 }
 
+export enum PanelNames {
+  VIEW_GRAPHICS = 'Graphics',
+  VIEW_GRAPHICS_2 = 'Graphics 2',
+  VIEW_3D_GRAPHICS = '3D Graphics',
+  VIEW_ALGEBRA = 'Algebra',
+  VIEW_SPREADSHEET = 'Spreadsheet',
+  VIEW_CAS = 'CAS',
+  VIEW_CONSTRUCTION_PROTOCOL = 'Construction Protocol',
+  VIEW_PROBABILITY_CALCULATOR = 'Probability Calculator'
+}
+
 export interface Panel {
   viewNo: number
-  name: string
+  name: PanelNames | ''
   location: Location
 }
 
