@@ -15,3 +15,12 @@ declare module '*.svg' {
 
 declare var __REACT_GEOGEBRA_VERSION__: string
 declare var __ENV__: string
+
+declare module 'is-deep-subset' {
+  const isDeepSubset: (superset: any, subset: any) => boolean
+  export default isDeepSubset
+}
+declare module 'is-subset' {
+  const isSubset: (superset: any, subset: any) => boolean
+  export default isSubset
+}

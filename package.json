@@ -1,6 +1,6 @@
 {
   "name": "react-redux-geogebra",
-  "version": "1.0.5",
+  "version": "1.0.10",
   "description": "Made with create-react-library",
   "author": "saunAAA",
   "license": "MIT",
@@ -63,8 +63,10 @@
   ],
   "dependencies": {
     "fast-xml-parser": "^4.0.6",
+    "is-subset": "^0.1.1",
     "react-redux": "^7.2.6",
     "redux": "^4.1.2",
-    "throttle-debounce": "^3.0.1"
+    "throttle-debounce": "^3.0.1",
+    "type-fest": "^2.12.0"
   }
 }

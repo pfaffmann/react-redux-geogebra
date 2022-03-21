@@ -1,20 +1,21 @@
 import React from 'react'
-
+import { PartialDeep } from 'type-fest'
 declare global {
   interface Window {
     GGBApplet: any
   }
 }
 
+export type ReactGeoGebraStateSubset = PartialDeep<ReactGeoGebraState>
+
 export interface ReactGeoGebraState {
-  id: AppletId
-  params: Partial<GeoGebraParameters>
+  params?: Partial<ReactGeoGebraParameters>
   elements: Elements
   selectedElementNames: Array<string>
-  mode: number
+  mode?: number
   isOnTheFlyPointCreationActive?: boolean
   isGridVisible?: GridVisibility
-  editorState: EditorState
+  editorState?: EditorState
   perspective?: Perspective
   mouseDown?: Mouse
   euclidianViews?: Array<EuclidianView>
@@ -91,6 +92,7 @@ export interface Element {
 }
 
 export type Elements = Array<Element>
+
 interface GridVisibility {
   viewNumber?: number
   isVisible: boolean
@@ -225,7 +227,7 @@ export interface CustomAppParameters {
   isReloadingIfPropChanges?: boolean
 }
 
-export type GeoGebraParameters = AppParameters & CustomAppParameters
+export type ReactGeoGebraParameters = AppParameters & CustomAppParameters
 
 export interface ProbabilityCalculator {
   distribution: Distribution

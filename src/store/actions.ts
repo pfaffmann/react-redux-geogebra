@@ -11,7 +11,7 @@ import {
   ProbabilityCalculator,
   SpreadsheetView,
   MetaInformation,
-  GeoGebraParameters
+  ReactGeoGebraParameters
 } from '../types'
 import * as constants from './constants'
 
@@ -70,7 +70,7 @@ export const setProbabilityCalculatorInStore = (
 export const setMetainformationInStore = (metainformation: MetaInformation) =>
   createAction(constants.SET_METAINFORMATION_IN_STORE, metainformation)
 
-export const setParamsInStore = (params: GeoGebraParameters) =>
+export const setParamsInStore = (params: ReactGeoGebraParameters) =>
   createAction(constants.SET_PARAMS_IN_STORE, params)
 
 export type ReactGeoGebraAction = ReturnType<

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { setScript } from '../../util'
-import { GeoGebraParameters } from '../../types'
+import { ReactGeoGebraParameters } from '../../types'
 import {
   addElementListener,
   clientEventListener,
@@ -11,7 +11,7 @@ import {
 import { useStore, useStoreActions } from '../../store/hooks'
 import { initializeStore } from '../../util/GeoGebraStoreManagement'
 
-const Geogebra: React.FC<GeoGebraParameters> = (props) => {
+const Geogebra: React.FC<ReactGeoGebraParameters> = (props) => {
   const refProps = useRef(props)
 
   let {
@@ -50,7 +50,8 @@ const Geogebra: React.FC<GeoGebraParameters> = (props) => {
     //initial State management-------------------------------------------
 
     initializeStore(app, store)
-    setParamsInStore(props)
+    const { children, ...rest } = props
+    setParamsInStore(rest)
     //add Store Listeners -----------------------------------------------
     addElementListener(app, store)
     removeElementListener(app, store)
