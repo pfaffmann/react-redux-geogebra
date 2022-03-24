@@ -5,7 +5,8 @@ import {
   useStoreState,
   ReactGeoGebraParameters,
   ReactGeoGebraStateSubset,
-  isDeepSubset as isSubsetFunc
+  isDeepSubset as isSubsetFunc,
+  useStateDifference
 } from 'react-redux-geogebra'
 
 import './App.css'
@@ -20,9 +21,10 @@ const App = () => {
   const [show, setShow] = useState<boolean>(true)
   const [subset, setSubset] = useState<ReactGeoGebraStateSubset>({})
   const [isSubset, setIsSubset] = useState<boolean>(false)
+  const diff = useStateDifference()
   useEffect(() => {
-    console.log(state)
-  }, [state])
+    console.log(diff)
+  }, [diff])
 
   useEffect(() => {
     setIsSubset(isSubsetFunc(state, subset))

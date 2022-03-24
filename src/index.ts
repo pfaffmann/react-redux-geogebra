@@ -7,4 +7,5 @@ export const ReactGeoGebra = Geogebra
 
 export * from './types'
 export * from './store/hooks'
+export * from './hooks'
 export const isDeepSubset = utilIsDeepSubset
